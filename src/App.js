@@ -11,22 +11,23 @@ class App extends Component {
 		super(props);
 		this.state = {
 			books: [],
-			term: 'a',
+			keyword: 'a',
 			printType: 'all',
 			bookType: ''
 		};
 		this.printTypeFilter = this.printTypeFilter.bind(this);
 		this.bookTypeFilter = this.bookTypeFilter.bind(this);
+		this.keywordFilter = this.keywordFilter.bind(this);
 	}
 
 	componentDidMount() {
 		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
-		const searchTerm = this.state.term;
+		const searchTerm = this.state.keyword;
 		const printType = this.state.printType;
 		const url =
 			'https://www.googleapis.com/books/v1/volumes?q=' +
 			searchTerm +
-			'&printType=' +
+			'&filter=full&printType=' +
 			printType +
 			'&maxResults=40&key=' +
 			APIKey;
@@ -68,12 +69,18 @@ class App extends Component {
 		});
 	}
 
+	keywordFilter(filter) {
+		this.setState({
+			keyword: filter
+		});
+	}
+
 	render() {
 		console.log(this.state);
 		return (
 			<div className='App'>
 				<Header />
-				<SearchBar />
+				<SearchBar keywordSearch={this.keywordFilter} />
 				<FilterBar
 					bookFilter={this.bookTypeFilter}
 					printFilter={this.printTypeFilter}

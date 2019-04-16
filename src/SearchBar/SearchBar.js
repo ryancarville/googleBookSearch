@@ -11,7 +11,7 @@ class SearchBar extends Component {
 						name='textSearch'
 						placeholder='Enter Search Term Here'
 						onChange={e => {
-							this.props.handelSearch(e.target.value);
+							this.props.keywordSearch(e.target.value);
 						}}
 					/>
 					<button type='submit'>Search</button>

@@ -18,6 +18,8 @@ class BookList extends Component {
 						{book.volumeInfo.subtitle} <br />
 						Author: {book.volumeInfo.authors}
 						<br />
+						Price: {book.saleInfo.saleability}
+						<br />
 						<a
 							href={book.volumeInfo.previewLink}
 							target='_blank'
