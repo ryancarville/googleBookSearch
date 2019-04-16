@@ -10,14 +10,25 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: []
+			books: [],
+			term: 'a',
+			printType: 'all',
+			bookType: ''
 		};
+		this.printTypeFilter = this.printTypeFilter.bind(this);
+		this.bookTypeFilter = this.bookTypeFilter.bind(this);
 	}
 
 	componentDidMount() {
 		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
+		const searchTerm = this.state.term;
+		const printType = this.state.printType;
 		const url =
-			'https://www.googleapis.com/books/v1/volumes?q=love&maxResults=40&key=' +
+			'https://www.googleapis.com/books/v1/volumes?q=' +
+			searchTerm +
+			'&printType=' +
+			printType +
+			'&maxResults=40&key=' +
 			APIKey;
 		const options = {
 			method: 'GET'
@@ -45,13 +56,28 @@ class App extends Component {
 			});
 	}
 
+	printTypeFilter(filter) {
+		this.setState({
+			printType: filter
+		});
+	}
+
+	bookTypeFilter(filter) {
+		this.setState({
+			bookType: filter
+		});
+	}
+
 	render() {
 		console.log(this.state);
 		return (
 			<div className='App'>
 				<Header />
 				<SearchBar />
-				<FilterBar />
+				<FilterBar
+					bookFilter={this.bookTypeFilter}
+					printFilter={this.printTypeFilter}
+				/>
 				<BookList list={this.state.books} />
 			</div>
 		);
