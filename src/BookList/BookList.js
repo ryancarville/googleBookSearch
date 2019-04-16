@@ -15,6 +15,9 @@ class BookList extends Component {
 					/>
 					<h2>{book.volumeInfo.title}</h2>
 					<p>
+						{book.volumeInfo.description}
+						<br />
+						<br />
 						{book.volumeInfo.subtitle} <br />
 						Author: {book.volumeInfo.authors}
 						<br />
@@ -23,10 +26,10 @@ class BookList extends Component {
 						Print Type: {book.volumeInfo.printType}
 						<br />
 						<a
-							href={book.volumeInfo.previewLink}
+							href={book.volumeInfo.infoLink}
 							target='_blank'
 							rel='noopener noreferrer'>
-							Click to Preivew
+							Click for more info
 						</a>
 					</p>
 				</li>

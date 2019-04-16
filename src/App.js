@@ -11,7 +11,7 @@ class App extends Component {
 		super(props);
 		this.state = {
 			books: [],
-			keyword: 'p',
+			keyword: 'a',
 			printType: '&printType=all',
 			bookType: ''
 		};
@@ -101,7 +101,7 @@ class App extends Component {
 					bookFilter={this.bookTypeFilter}
 					printFilter={this.printTypeFilter}
 				/>
-				<BookList list={this.state.books} />
+				<BookList list={this.state.books} err={this.state.error} />
 			</div>
 		);
 	}
