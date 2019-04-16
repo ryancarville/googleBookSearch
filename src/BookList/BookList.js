@@ -5,7 +5,7 @@ class BookList extends Component {
 	render() {
 		console.log(this.props);
 		const books = this.props.list.items.map((book, i) => {
-			return <li key={i}>{book[i].id}</li>;
+			return <li key={i}>{book.id}</li>;
 		});
 		return <div className='bookList'>{books}</div>;
 	}
