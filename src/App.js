@@ -36,7 +36,6 @@ class App extends Component {
 					books: data,
 					error: null
 				});
-				console.log(this.state);
 			})
 			.catch(err => {
 				this.setState({
@@ -46,6 +45,7 @@ class App extends Component {
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className='App'>
 				<Header />
