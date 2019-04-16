@@ -11,30 +11,33 @@ class App extends Component {
 		super(props);
 		this.state = {
 			books: [],
-			keyword: 'a',
-			printType: 'all',
+			keyword: 'p',
+			printType: '&printType=all',
 			bookType: ''
 		};
+
 		this.printTypeFilter = this.printTypeFilter.bind(this);
 		this.bookTypeFilter = this.bookTypeFilter.bind(this);
 		this.keywordFilter = this.keywordFilter.bind(this);
 	}
 
-	componentDidMount() {
+	runAPI() {
 		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
-		const searchTerm = this.state.keyword;
-		const printType = this.state.printType;
-		const url =
+		let searchTerm = this.state.keyword;
+		let printType = this.state.printType;
+		let bookType = this.state.bookType;
+		let url =
 			'https://www.googleapis.com/books/v1/volumes?q=' +
 			searchTerm +
-			'&filter=full&printType=' +
 			printType +
+			bookType +
 			'&maxResults=40&key=' +
 			APIKey;
 		const options = {
 			method: 'GET'
 		};
-		console.log('Component did mount');
+		console.log('API Ran');
+		console.log(url);
 		fetch(url, options)
 			.then(res => {
 				if (!res.ok) {
@@ -61,22 +64,35 @@ class App extends Component {
 		this.setState({
 			printType: filter
 		});
+		setTimeout(() => {
+			this.runAPI();
+		}, 200);
 	}
 
 	bookTypeFilter(filter) {
 		this.setState({
 			bookType: filter
 		});
+		setTimeout(() => {
+			this.runAPI();
+		}, 200);
 	}
 
 	keywordFilter(filter) {
 		this.setState({
 			keyword: filter
 		});
+		this.runAPI();
+	}
+
+	componentDidMount() {
+		console.log('Component did mount');
+		this.runAPI();
 	}
 
 	render() {
 		console.log(this.state);
+
 		return (
 			<div className='App'>
 				<Header />

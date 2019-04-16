@@ -9,12 +9,11 @@ class SearchBar extends Component {
 					<input
 						type='text'
 						name='textSearch'
-						placeholder='Enter Search Term Here'
 						onChange={e => {
 							this.props.keywordSearch(e.target.value);
 						}}
+						placeholder='Enter Search Term Here'
 					/>
-					<button type='submit'>Search</button>
 				</form>
 			</div>
 		);

@@ -5,29 +5,30 @@ class FilterBar extends Component {
 	render() {
 		return (
 			<div className='filterbar'>
-				<form className='filterPrint dropMenu'>
+				<form
+					className='filterPrint dropMenu'
+					onChange={e => {
+						this.props.printFilter(e.target.value);
+					}}>
 					<label htmlFor='printFilter'>Print Type:</label>
-					<select
-						onChange={e => {
-							this.props.printFilter(e.target.value);
-						}}>
+					<select>
 						<optgroup label='printFilter' name='printFilter'>
-							<option value='all'>All</option>
-							<option value='books'>Books</option>
-							<option value='magazines'>Magazines</option>
+							<option value='&printType=all'>All</option>
+							<option value='&printType=books'>Books</option>
+							<option value='&printType=magazines'>Magazines</option>
 						</optgroup>
 					</select>
 				</form>
-				<form className='filterBook dropMenu'>
+				<form
+					className='filterBook dropMenu'
+					onChange={e => {
+						this.props.bookFilter(e.target.value);
+					}}>
 					<label htmlFor='bookFilter'>Book Type:</label>
-					<select
-						onChange={e => {
-							this.props.bookFilter(e.target.value);
-						}}>
+					<select>
 						<optgroup label='bookFilter' name='bookFilter'>
 							<option value=''>No Filter</option>
-							<option value='softback'>Softback</option>
-							<option value='hardback'>Hardback</option>
+							<option value='&filter=free-ebooks'>Free ebook</option>
 						</optgroup>
 					</select>
 				</form>

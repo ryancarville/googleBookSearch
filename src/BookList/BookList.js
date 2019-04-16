@@ -20,6 +20,8 @@ class BookList extends Component {
 						<br />
 						Price: {book.saleInfo.saleability}
 						<br />
+						Print Type: {book.volumeInfo.printType}
+						<br />
 						<a
 							href={book.volumeInfo.previewLink}
 							target='_blank'
