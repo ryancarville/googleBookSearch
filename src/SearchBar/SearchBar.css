@@ -1,0 +1,19 @@
+.searchBar {
+	box-sizing: border-box;
+	width: 100%;
+	height: 50px;
+	background-color: grey;
+	padding: 10px;
+}
+
+.searchBarForm input {
+	width: 500px;
+	height: 25px;
+	text-align: center;
+}
+
+.searchBarForm button {
+	width: 100px;
+	height: 30px;
+	margin-left: 40px;
+}

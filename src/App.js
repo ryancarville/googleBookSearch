@@ -1,28 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Header from './Header/Header';
+import SearchBar from './SearchBar/SearchBar';
+import FilterBar from './FilterBar/FilterBar';
+import BookList from './BookList/BookList';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			books: []
+		};
+	}
+
+	componentDidMount() {
+		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
+		const url =
+			'https://www.googleapis.com/books/v1/volumes?q=travel:keyes&key=' +
+			APIKey;
+		const options = {
+			method: 'GET'
+		};
+		console.log('Component did mount');
+		fetch(url, options)
+			.then(res => {
+				if (!res.ok) {
+					throw new Error('Something went wrong, please try again later.');
+				}
+				return res;
+			})
+			.then(res => res.json())
+			.then(data => {
+				this.setState({
+					books: data,
+					error: null
+				});
+				console.log(this.state);
+			})
+			.catch(err => {
+				this.setState({
+					error: err.message
+				});
+			});
+	}
+
+	render() {
+		return (
+			<div className='App'>
+				<Header />
+				<SearchBar />
+				<FilterBar />
+				<BookList list={this.state.books} />
+			</div>
+		);
+	}
 }
 
 export default App;
