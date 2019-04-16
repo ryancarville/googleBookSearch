@@ -17,7 +17,7 @@ class App extends Component {
 	componentDidMount() {
 		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
 		const url =
-			'https://www.googleapis.com/books/v1/volumes?q=travel:keyes&key=' +
+			'https://www.googleapis.com/books/v1/volumes?q=beauty:keyes&key=' +
 			APIKey;
 		const options = {
 			method: 'GET'
