@@ -5,10 +5,27 @@ class BookList extends Component {
 	render() {
 		const bookData = this.props.list;
 		console.log(bookData);
-		const books = Object.keys(bookData).map((book, i) => {
-			return <li key={book.items[i].id}>{book.items[i].volumeInfo.title}</li>;
+		const books = bookData.map((book, i) => {
+			return (
+				<li key={book.id} className='bookListItem'>
+					<img
+						src={book.volumeInfo.imageLinks.thumbnail}
+						alt={book.volumeInfo.title}
+						className='bookImg'
+					/>
+					<h2>{book.volumeInfo.title}</h2>
+					<p>
+						{book.volumeInfo.subtitle} <br />
+						Author: {book.volumeInfo.authors}
+					</p>
+				</li>
+			);
 		});
-		return <div className='bookList'>{books}</div>;
+		return (
+			<div className='bookListWrap'>
+				<ul className='bookList'>{books}</ul>
+			</div>
+		);
 	}
 }
 export default BookList;

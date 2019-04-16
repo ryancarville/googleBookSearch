@@ -17,7 +17,7 @@ class App extends Component {
 	componentDidMount() {
 		const APIKey = 'AIzaSyCynQmybiH2DWuDtAUchiYustdJCqVk0Rw';
 		const url =
-			'https://www.googleapis.com/books/v1/volumes?q=beauty:keyes&key=' +
+			'https://www.googleapis.com/books/v1/volumes?q=love&maxResults=40&key=' +
 			APIKey;
 		const options = {
 			method: 'GET'
@@ -32,8 +32,9 @@ class App extends Component {
 			})
 			.then(res => res.json())
 			.then(data => {
+				const bookList = data.items;
 				this.setState({
-					books: data,
+					books: bookList,
 					error: null
 				});
 			})
